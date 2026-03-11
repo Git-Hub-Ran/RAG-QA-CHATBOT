@@ -1,12 +1,3 @@
----
-license: mit
-sdk: gradio
-emoji: 🏆
-colorFrom: blue
-colorTo: pink
----
-# RAG QA Chatbot
-
 This project implements a Retrieval-Augmented Generation (RAG) chatbot that answers questions based on government news documents.
 
 ## Technologies

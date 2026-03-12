@@ -85,14 +85,20 @@ from langchain_core.prompts import ChatPromptTemplate
 #define the prompt:
 prompt = ChatPromptTemplate.from_messages([
    ("system",
-    "You are a helpful assistant.\n"
-    "Answer the question ONLY using the provided context.\n"
-    "If the answer is not in the context, say 'I don’t know.'\n\n"
+    "You are a helpful document QA assistant.\n"
+    "Answer the user's question ONLY using the provided context.\n"
+    "If the answer is not in the context, say: "
+    "'I couldn't find the answer in the provided documents. "
+    "Please ask a question related to the uploaded files.'\n\n"
+    
+    "If the user greets you with messages like 'hello', 'hi', "
+    "'good morning', or similar greetings, respond politely and "
+    "ask the user to ask a question related to the uploaded documents.\n\n"
+
     "Context:\n{context}"
    ),
    ("human", "{input}")
 ])
-
 
 # Create the answer-generation chain (LLM + prompt that processes retrieved documents):
 question_answer_chain = create_stuff_documents_chain(llm, prompt)
@@ -132,8 +138,8 @@ def ask_question(message, history):
 # Create a Gradio chat interface for interacting with the RAG chatbot
 demo = gr.ChatInterface(
     fn=ask_question,  # Function that handles user questions
-    title="RAG QA Chatbot",  # Title displayed at the top of the web application
-    description="Ask questions about the indexed documents"  # Short explanation for the user
+    title="RAG Document QA Chatbot 🤖",  # Title displayed at the top of the web application
+    description="Ask questions about the uploaded documents.\nThe bot will answer only using the document content." # Short explanation for the user
 )
 
 # Queue allows handling multiple users and improves stability

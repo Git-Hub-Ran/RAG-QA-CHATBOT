@@ -22,7 +22,7 @@ The chatbot retrieves relevant text chunks from public websites and uses an LLM 
 
 ## Project Structure
 ```
-rag-document-qa/
+rag-qa-chatbot/
 │
 ├── app.py # Main RAG + Gradio app
 ├── requirements.txt # Python dependencies
